@@ -612,6 +612,13 @@ All activities documented in this repository were performed within the **authori
 
 # 8. Evidence Collected
 
+
+<p align="center">
+  <a href="ALL EVIDENCE.zip">
+    <img src="https://img.shields.io/badge/📸%20VIEW%20ALL%20EVIDENCE%20SCREENSHOTS-7C3AED?style=for-the-badge&labelColor=0F172A&logoColor=white" alt="View All Evidence Screenshots Zip"/>
+  </a>
+</p>
+
 | Evidence | Tool | Purpose |
 |---|---|---|
 | WHOIS Output | WHOIS | Domain registration information |
