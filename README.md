@@ -605,25 +605,6 @@ All activities documented in this repository were performed within the **authori
 ---
 
 # 8. Evidence Collected
-<p align="center">
-  <strong>networkwalks-week-02-penetration-testing</strong>
-</p>
-
-<p align="center">
-  Footprinting • Reconnaissance • OSINT • DNS Analysis • Web Fingerprinting • WAF Detection • Network Scanning
-</p>
-
----
-
-<p align="center">
-  <a href="YOUR_REPORT_LINK_HERE">
-    <img src="https://img.shields.io/badge/📄%20VIEW%20FULL%20PENETRATION%20TESTING%20REPORT-2563EB?style=for-the-badge&logoColor=white" alt="View Full Penetration Testing Report"/>
-  </a>
-</p>
-
----
-
-# 1. Liability Disclaimer
 
 | Evidence | Tool | Purpose |
 |---|---|---|
@@ -641,5 +622,79 @@ All activities documented in this repository were performed within the **authori
 
 ---
 
+<p align="center">
+  <h1 align="center">🛡️ NETWORKWALKS</h1>
+</p>
+
+
+<p align="center">
+  Footprinting • Reconnaissance • OSINT • DNS Analysis • Web Fingerprinting • WAF Detection • Network Scanning
+</p>
+
+<p align="center">
+  <a href="YOUR_REPORT_LINK_HERE">
+    <img src="https://img.shields.io/badge/📄%20VIEW%20FULL%20PENETRATION%20TESTING%20REPORT-2563EB?style=for-the-badge&logoColor=white" alt="View Full Penetration Testing Report"/>
+  </a>
+</p>
+
+---
+
+#  Mentor & Program Credit
+
+This practical project was completed as part of the **Networkwalks Cybersecurity & Ethical Hacking training program**.
+
+Special thanks to the **Networkwalks training team and mentors** for providing the practical cybersecurity exercises, structured learning modules and guidance throughout the internship.
+
+The project provided hands-on exposure to industry-relevant reconnaissance, OSINT and network-scanning techniques in an authorized educational environment.
+
+### Mentor
+
+**Waqas Karim CCIE**  
+Cybersecurity Professional  
+Networkwalks
+
+> Grateful for the guidance and practical learning provided throughout the cybersecurity training program.
+
+---
+
+#  Professional Note
+
+This repository represents my practical learning and hands-on work during **Week 02** of the cybersecurity training program.
+
+The purpose of this project is to demonstrate my understanding of reconnaissance, information gathering, OSINT, DNS analysis and network discovery while following an authorized and ethical testing approach.
+
+All findings documented in this repository should be interpreted within the scope of the educational exercise.
+
+
+# Author
+
+<p align="center">
+
+<strong>Syed Bilal Ahmed</strong>
+
+</p>
+
+<p align="center">
+
+Cybersecurity Student | Ethical Hacking & Network Security
+
+</p>
+
+<p align="center">
+
+Footprinting • Reconnaissance • OSINT • Network Security • Penetration Testing
+
+</p>
+
+
+<p align="center">
+  <strong>W2-PM-FINAL | NETWORKWALKS | WEEK 02</strong>
+</p>
+
+<p align="center">
+  🛡️ <strong>Learn • Practice • Document • Secure</strong> 🛡️
+</p>
+
+---
 **End of Report**
 
