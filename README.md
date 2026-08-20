@@ -278,7 +278,6 @@ The result indicates that the website is protected by a ModSecurity (SpiderLabs)
 
 **Evidence:**
 
-> 📸 **Wafw00f command output screenshot**
 <img width="1165" height="908" alt="Screenshot 2026-08-18 220045" src="https://github.com/user-attachments/assets/21f888d8-41d5-4f23-9b23-d9725e0a8000" />
 
 
@@ -319,6 +318,59 @@ DNSRecon provided additional information about the target's publicly visible DNS
 <img width="1165" height="903" alt="Screenshot 2026-08-18 220149" src="https://github.com/user-attachments/assets/1d2e628c-ed98-4497-bfe6-c7bb8edb45bb" />
 
 <img width="1155" height="915" alt="Screenshot 2026-08-18 220354" src="https://github.com/user-attachments/assets/026b052d-0d42-4c07-92f5-f302f4e2f363" />
+
+---
+## 4.2 OSINT Enumeration with theHarvester
+
+As part of the OSINT enumeration activity, I used **theHarvester** to collect publicly available information associated with the `networkwalks.com` domain.
+
+The purpose of this activity was to understand how publicly available search sources can reveal information such as autonomous systems, IP addresses, interesting URLs, subdomains and other externally visible infrastructure details.
+
+### 4.2.1 theHarvester
+
+**Purpose:**  
+theHarvester was used to perform passive OSINT enumeration against `networkwalks.com` using multiple public information sources.
+
+**Command:**
+
+```bash
+theHarvester -d networkwalks.com -l 10 -b all
+```
+**Result:**
+
+The command executed successfully and performed an OSINT search against the target domain. Some search sources required API keys and therefore returned limited or unavailable results.
+
+**Key Information Collected:**
+
+- **Target:** `networkwalks.com`
+- **ASNs Found:** `3`
+- **ASN 1:** `AS13335`
+- **ASN 2:** `AS31898`
+- **ASN 3:** `AS46606`
+- **Interesting URLs:** `2`
+- **URL 1:** `http://networkwalks.com/`
+- **URL 2:** `https://networkwalks.com/`
+- **IP Addresses Found:** `4`
+- **LinkedIn Users:** `0`
+- **LinkedIn Links:** `0`
+- **Subdomains:** `3` found using DNS fallback
+
+**Observation:**
+
+TheHarvester provided additional OSINT information about the target's externally visible infrastructure. The results included multiple ASNs, IP addresses, interesting URLs and subdomain information.
+
+Some sources reported authentication or API-key limitations, including services that required API keys. Therefore, the results should be considered **partial OSINT enumeration** rather than a complete representation of all publicly available information.
+
+The information collected is useful during the reconnaissance phase for building an initial external profile of the target.
+
+**Evidence:**
+
+<img width="1511" height="911" alt="Screenshot 2026-08-19 001906" src="https://github.com/user-attachments/assets/ee4cb36a-3839-4657-adde-5de119c0db58" />
+<img width="1515" height="907" alt="Screenshot 2026-08-19 001924" src="https://github.com/user-attachments/assets/47ccbd03-4337-42d0-b61c-c4cc58c49da1" />
+<img width="1514" height="906" alt="Screenshot 2026-08-19 001934" src="https://github.com/user-attachments/assets/4ee97674-a842-4790-aecb-f3ba9ea33727" />
+<img width="1514" height="906" alt="Screenshot 2026-08-19 001934" src="https://github.com/user-attachments/assets/43e60538-c558-4457-b660-f8360f420fa4" />
+<img width="1512" height="919" alt="Screenshot 2026-08-19 001944" src="https://github.com/user-attachments/assets/0ee8da7d-cdff-46ab-af3a-4d6fcf1685f5" />
+
 
 
 
