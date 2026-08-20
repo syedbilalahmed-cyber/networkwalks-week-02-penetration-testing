@@ -128,6 +128,25 @@ WHOIS was used to collect publicly available domain-registration information, in
 ```bash
 whois networkwalks.com
 ```
+**Result:**
+
+The command executed successfully and returned domain-registration and DNS-related information.
+
+**Key Information Collected:**
+
+- **Domain:** `NETWORKWALKS.COM`
+- **Registrar:** `GoDaddy.com, LLC`
+- **Creation Date:** `2019-11-06`
+- **Registry Expiry:** `2027-11-06`
+- **Name Servers:** `NS6135.HOSTGATOR.COM`, `NS6136.HOSTGATOR.COM`
+- **DNSSEC:** `Unsigned`
+- **Domain Protection:** Delete, Renew, Transfer and Update prohibited
+
+**Observation:**  
+The WHOIS lookup provided useful information about the domain registration and externally visible DNS infrastructure. The result is informational and does not by itself confirm a vulnerability.
+
+**Evidence:**
+
 <img width="1160" height="908" alt="Screenshot 2026-08-18 215617" src="https://github.com/user-attachments/assets/205afd8b-9c2c-4f5f-a6b6-6e1634c0d60b" />
 
 - 
@@ -142,6 +161,28 @@ WhatWeb was used to fingerprint the `networkwalks.com` website and identify publ
 whatweb networkwalks.com
 
 ```
+**Result:**
+
+The command successfully fingerprinted the target website and identified several web technologies.
+
+**Key Information Collected:**
+
+- **Web Server:** `Apache`
+- **CMS:** `WordPress 7.0.4`
+- **Plugin:** `WordPress Download Manager 3.3.58`
+- **JavaScript:** `jQuery 3.7.1`
+- **Framework:** `Bootstrap`
+- **IP Address:** `192.232.216.135`
+- **Page Title:** `Networkwalks Academy`
+- **HTTPS Status:** `200 OK`
+- **HTTP Redirect:** `301 Moved Permanently`
+
+**Observation:**
+
+WhatWeb revealed the externally visible technology stack of the website. This information can assist with authorized security assessment and technology review.
+
+**Evidence:**
+
  <img width="1148" height="912" alt="Screenshot 2026-08-18 222516" src="https://github.com/user-attachments/assets/7114a782-e31a-46fb-b50a-8268607a2272" />
 
 
@@ -155,6 +196,24 @@ Nslookup was used to resolve the `networkwalks.com` domain and identify its publ
 ```bash
 nslookup networkwalks.com
 ```
+**Result:**
+
+The command successfully resolved the domain using DNS.
+
+**Key Information Collected:**
+
+- **Domain:** `networkwalks.com`
+- **IPv4 Address:** `192.232.216.135`
+- **IPv6-related Address:** `64:ff9b::c0e8:d887`
+- **DNS Server:** `172.23.212.198`
+- **Response:** `Non-authoritative answer`
+
+**Observation:**
+
+The DNS lookup provided the publicly returned network address information for the target domain.
+
+**Evidence:**
+
 <img width="1158" height="913" alt="Screenshot 2026-08-18 215805" src="https://github.com/user-attachments/assets/00a377a8-af9a-4026-88db-337922a75801" />
 
 
@@ -168,6 +227,27 @@ Curl was used to inspect the HTTP response headers returned by the `networkwalks
 ```bash
 curl -I https://networkwalks.com
 ```
+**Result:**
+
+The command successfully returned the HTTP response headers.
+
+**Key Information Collected:**
+
+- **HTTP Status:** `HTTP/2 200`
+- **Server:** `Apache`
+- **Content Type:** `text/html; charset=UTF-8`
+- **X-Nginx-Cache:** `WordPress`
+- **Referrer Policy:** `no-referrer-when-downgrade`
+- **WordPress REST API:** `/wp-json/`
+- **HttpOnly Cookie:** `wpdm_client`
+- **Permissions Policy:** Present
+
+**Observation:**
+
+The Curl response provided useful HTTP and application-level metadata, including server information and a publicly accessible WordPress REST API endpoint.
+
+**Evidence:**
+
 <img width="1163" height="906" alt="Screenshot 2026-08-18 215900" src="https://github.com/user-attachments/assets/1495dac4-bb44-456a-bba4-72405da6dfb2" />
 
 
@@ -181,6 +261,24 @@ Wafw00f was used to identify whether a Web Application Firewall (WAF) was protec
 ```bash
 wafw00f networkwalks.com
 ```
+**Result:**
+
+The command successfully detected a Web Application Firewall.
+
+**Key Information Collected:**
+
+- **WAF Detected:** `Yes`
+- **WAF:** `ModSecurity`
+- **Provider/Technology:** `SpiderLabs`
+- **Requests Used:** `2`
+
+**Observation:**
+
+The result indicates that the website is protected by a ModSecurity (SpiderLabs) WAF. This is an important security-control observation during reconnaissance.
+
+**Evidence:**
+
+> 📸 **Wafw00f command output screenshot**
 <img width="1165" height="908" alt="Screenshot 2026-08-18 220045" src="https://github.com/user-attachments/assets/21f888d8-41d5-4f23-9b23-d9725e0a8000" />
 
 
@@ -194,6 +292,30 @@ DNSRecon was used to enumerate publicly available DNS records associated with `n
 ```bash
 dnsrecon -d networkwalks.com
 ```
+**Result:**
+
+The command successfully enumerated multiple DNS records and infrastructure details.
+
+**Key Information Collected:**
+
+- **SOA Server:** `ns6135.hostgator.com`
+- **Name Servers:** `ns6135.hostgator.com`, `ns6136.hostgator.com`
+- **A Record:** `192.232.216.135`
+- **MX Record:** `mail.networkwalks.com`
+- **TXT Record:** Google site-verification record detected
+- **SPF:** `v=spf1 +a +mx +ip4:50.87.144.87 +include:websitewelcome.com ~all`
+- **SRV Records:** `_autodiscover._tcp.networkwalks.com`
+- **Service:** `cpanelemaildiscovery.cpanel.net`
+- **Service Port:** `443`
+- **DNSSEC:** No DNSSEC answer returned during enumeration
+
+**Observation:**
+
+DNSRecon provided additional information about the target's publicly visible DNS infrastructure, including name servers, mail services, TXT/SPF records and service-discovery records.
+
+**Evidence:**
+
+
 <img width="1165" height="903" alt="Screenshot 2026-08-18 220149" src="https://github.com/user-attachments/assets/1d2e628c-ed98-4497-bfe6-c7bb8edb45bb" />
 
 <img width="1155" height="915" alt="Screenshot 2026-08-18 220354" src="https://github.com/user-attachments/assets/026b052d-0d42-4c07-92f5-f302f4e2f363" />
