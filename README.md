@@ -371,7 +371,275 @@ The information collected is useful during the reconnaissance phase for building
 <img width="1514" height="906" alt="Screenshot 2026-08-19 001934" src="https://github.com/user-attachments/assets/43e60538-c558-4457-b660-f8360f420fa4" />
 <img width="1512" height="919" alt="Screenshot 2026-08-19 001944" src="https://github.com/user-attachments/assets/0ee8da7d-cdff-46ab-af3a-4d6fcf1685f5" />
 
+---
 
+## 4.3 Network Scanning with Zenmap / Nmap
 
+For the network-scanning activity, I used **Zenmap**, the graphical interface for **Nmap**, to perform network discovery on an authorized local/lab network.
 
+The objective was to identify active hosts, discover open TCP services and review the network topology generated from the scan.
+
+### 4.3.1 Network Target
+
+The network range used for the scan was:
+
+```text
+172.23.212.96/24
+```
+Scan Profile: Quick Scan
+
+Nmap Command: nmap -T4 -F 172.23.212.96/24
+
+The scan covered 256 IP addresses.
+
+<img width="1919" height="1002" alt="Screenshot 2026-08-19 230844" src="https://github.com/user-attachments/assets/b12b50ba-1334-4d95-b9bd-f86c36368c08" />
+
+### 4.3.2 Host Discovery and Service Enumeration
+
+The scan identified **2 active hosts** within the scanned network:
+
+- `172.23.212.198`
+- `172.23.212.96`
+
+For `172.23.212.198`, the following service was identified:
+
+- **53/tcp — DNS**
+
+For `172.23.212.96`, the following open TCP services were identified:
+
+| Port | State | Service |
+|---|---|---|
+| `135/tcp` | Open | `msrpc` |
+| `139/tcp` | Open | `netbios-ssn` |
+| `445/tcp` | Open | `microsoft-ds` |
+| `5432/tcp` | Open | `postgresql` |
+
+**Result:**
+```text
+
+Nmap scan report for 172.23.212.198
+Host is up.
+53/tcp open domain
+
+Nmap scan report for 172.23.212.96
+Host is up.
+135/tcp open msrpc
+139/tcp open netbios-ssn
+445/tcp open microsoft-ds
+5432/tcp open postgresql
+
+Nmap done: 256 IP addresses (2 hosts up)
+
+```
+**Observation:**
+
+The Nmap scan successfully identified active hosts and their exposed network services within the authorized local/lab environment.
+
+The discovered ports represent **observed services and do not automatically indicate vulnerabilities**. Further authorized assessment would be required to determine whether any service is misconfigured or vulnerable.
+
+**Evidence:**
+<img width="1906" height="1008" alt="Screenshot 2026-08-19 230922" src="https://github.com/user-attachments/assets/1b625afe-9550-4240-a498-efe88efc4e26" />
+
+### 4.3.3 Zenmap Host View
+
+The Zenmap interface displayed the discovered hosts in the host list.
+
+The identified hosts were:
+
+```text
+172.23.212.198
+172.23.212.96
+
+```
+The Zenmap legend was also reviewed to understand the host and connection indicators.
+
+Evidence:
+<img width="1919" height="1007" alt="Screenshot 2026-08-19 230957" src="https://github.com/user-attachments/assets/99381b31-fbf7-4a82-8c9b-403613ddf2f0" />
+
+### 4.3.4 Zenmap Topology
+
+After completing the scan, I opened the Topology section in Zenmap to visualize the discovered network relationships.
+
+The topology displayed:
+```text
+
+localhost
+172.23.212.198
+172.23.212.96
+```
+
+The Zenmap legend was also reviewed to understand the host and connection indicators.
+
+Evidence:
+<img width="1919" height="1007" alt="Screenshot 2026-08-19 230957" src="https://github.com/user-attachments/assets/8faf05c2-3925-4c9b-b27b-f9c78924bdc8" />
+
+### 4.3.5 Topology Export
+
+The generated topology was prepared for documentation using Zenmap's Save Graphic / Save Topology option.
+
+The topology was exported as a PDF for inclusion in the practical documentation.
+
+Evidence:
+
+<img width="1917" height="1009" alt="Screenshot 2026-08-19 231230" src="https://github.com/user-attachments/assets/39a5551f-c101-4081-8ef7-ee8af72594ad" />
+<img width="1902" height="997" alt="Screenshot 2026-08-19 231742" src="https://github.com/user-attachments/assets/82c34bd3-7573-4512-9208-8d2be66f0ce7" />
+
+### 4.3.6 Network Scanning Summary
+
+| Category | Result |
+|---|---|
+| **Tool** | Zenmap / Nmap |
+| **Scan Profile** | Quick Scan |
+| **Target Network** | `172.23.212.96/24` |
+| **IP Addresses Scanned** | `256` |
+| **Active Hosts** | `2` |
+| **Host 1** | `172.23.212.198` |
+| **Host 2** | `172.23.212.96` |
+| **DNS** | `53/tcp` |
+| **MSRPC** | `135/tcp` |
+| **NetBIOS-SSN** | `139/tcp` |
+| **Microsoft-DS / SMB** | `445/tcp` |
+| **PostgreSQL** | `5432/tcp` |
+| **Topology Generated** | Yes |
+| **Topology Exported** | PDF |
+
+**Final Observation:**
+
+The Zenmap/Nmap activity demonstrated how network scanning can be used to identify live hosts and exposed services within an authorized network. The results provide a useful initial view of the network and can support further authorized security assessment.
+
+**Evidence:**
+
+<img width="1906" height="1008" alt="Screenshot 2026-08-19 230922" src="https://github.com/user-attachments/assets/a1e079fb-0a42-4940-aa8b-b4f637480a5a" />
+
+# 5. Risk Analysis / Impact
+
+Based on the information collected during the **footprinting, reconnaissance, OSINT and network scanning activities**, the following potential security observations were identified.
+
+| # | Risk / Finding | Evidence / Observation | Potential Impact | Risk Level |
+|---|---|---|---|---|
+| 1 | Web technology information exposed | WhatWeb identified Apache, WordPress `7.0.4`, WP Download Manager `3.3.58`, jQuery and Bootstrap | Exposed technology information may assist further authorized security assessment and technology identification | **● Medium** |
+| 2 | Publicly identifiable server IP | Nslookup resolved `networkwalks.com` to `192.232.216.135` | Provides information about the externally visible network location of the web service | **● Low** |
+| 3 | HTTP and application information exposed | Curl returned HTTP response headers and identified the `/wp-json/` endpoint | May assist technology fingerprinting and further authorized enumeration | **● Low** |
+| 4 | WAF technology identifiable | Wafw00f identified `ModSecurity (SpiderLabs)` | Reveals information about the web application's security architecture | **● Low** |
+| 5 | DNS infrastructure information exposed | DNSRecon identified SOA, NS, A, MX, TXT, SPF and SRV records | DNS information can help build an external profile of the target infrastructure | **● Medium** |
+| 6 | OSINT information publicly discoverable | theHarvester identified ASNs, IP addresses, URLs and subdomain information | Publicly available infrastructure information may assist further reconnaissance | **● Medium** |
+| 7 | Multiple active hosts identified | Zenmap/Nmap identified `2` active hosts in the authorized local/lab network | Unknown or unauthorized devices may increase the network attack surface | **● Medium** |
+| 8 | Multiple network services exposed | Nmap identified DNS `53/tcp`, MSRPC `135/tcp`, NetBIOS-SSN `139/tcp`, Microsoft-DS/SMB `445/tcp` and PostgreSQL `5432/tcp` | Unnecessary or improperly secured services may increase the attack surface and should be reviewed | **● Medium** |
+
+### Risk Level Key
+
+- **● Critical** — Potentially severe security impact requiring immediate investigation
+- **● Medium** — Security-relevant observation requiring review
+- **● Low** — Informational observation with limited direct impact
+
+The findings listed above are **security observations from the reconnaissance and scanning exercises and are not confirmed vulnerabilities**.
+
+The activities primarily involved information gathering, OSINT enumeration, host discovery and service identification. No exploitation, credential attacks, privilege escalation, persistence or destructive testing was performed.
+
+Therefore, identifying a software version, IP address, DNS record, WAF or open network service does not by itself confirm that a vulnerability exists. Further authorized security testing would be required to validate any potential weakness.
+
+---
+
+# 6. Recommendations
+
+Based on the observations collected during the practical activities, the following security recommendations are suggested:
+
+1. **Review publicly exposed technology information**  
+   Regularly review publicly visible information about web servers, CMS platforms, plugins and frameworks.
+
+2. **Keep web technologies updated**  
+   Ensure that WordPress, plugins, web servers and other application components are maintained with appropriate security updates.
+
+3. **Review HTTP response information**  
+   Review HTTP response headers and application endpoints to minimize unnecessary technical information exposure.
+
+4. **Review DNS infrastructure**  
+   Periodically review publicly available DNS records and remove unnecessary or outdated records and services.
+
+5. **Maintain WAF protection**  
+   Keep the detected ModSecurity WAF properly configured, updated and monitored for security events.
+
+6. **Review publicly available OSINT information**  
+   Organizations should periodically review what infrastructure information can be discovered through publicly available sources.
+
+7. **Perform regular internal network discovery**  
+   Authorized network scans should be performed periodically to identify active devices and exposed services.
+
+8. **Review open network services**  
+   Services such as DNS, SMB, MSRPC and PostgreSQL should be reviewed to ensure that they are required, properly configured and appropriately restricted.
+
+9. **Investigate unknown hosts**  
+   Any unexpected device identified during network discovery should be verified and investigated.
+
+10. **Maintain network documentation**  
+    Hosts, services and network topology should be documented and kept up to date.
+
+11. **Perform security testing within authorized scope**  
+    Reconnaissance, scanning and any subsequent security testing should only be performed against systems and networks for which appropriate authorization has been provided.
+
+---
+
+# 7. Conclusion
+
+During Week 2 of my **Cybersecurity and Ethical Hacking internship**, I completed practical activities covering **footprinting, reconnaissance, OSINT enumeration and network scanning**.
+
+During the footprinting and reconnaissance activity, I used six Kali Linux tools: **WHOIS, WhatWeb, Nslookup, Curl, Wafw00f and DNSRecon**. These tools helped me collect information about domain registration, web technologies, DNS records, HTTP metadata, WAF protection and publicly visible DNS infrastructure.
+
+The WHOIS activity provided domain registration information, including the registrar, registration dates, name servers and DNSSEC status. WhatWeb helped identify the externally visible web technology stack, while Nslookup provided the domain's publicly returned IP address.
+
+Curl was used to inspect HTTP response headers, and Wafw00f identified **ModSecurity (SpiderLabs)** as the detected WAF technology. DNSRecon provided additional DNS information, including SOA, NS, A, MX, TXT, SPF and SRV records.
+
+I also used **theHarvester** for OSINT enumeration. The activity identified publicly available information including ASNs, IP addresses, interesting URLs and subdomain information. Some external sources required API keys, so the results were treated as **partial OSINT enumeration**.
+
+For network scanning, I used **Zenmap/Nmap** against the authorized local/lab network. The scan covered `172.23.212.96/24` and identified **2 active hosts**:
+
+- `172.23.212.198`
+- `172.23.212.96`
+
+The scan identified services including **DNS, MSRPC, NetBIOS-SSN, Microsoft-DS/SMB and PostgreSQL**. I also reviewed the discovered hosts through Zenmap and generated a network topology for documentation.
+
+Overall, these activities helped me understand how a cybersecurity professional can collect and analyze information before performing further security assessment. I also learned the importance of documenting commands, results, observations, evidence and potential security impact in a structured penetration-testing report.
+
+All activities documented in this repository were performed within the **authorized educational cybersecurity training and local/lab environment**. No exploitation or destructive testing was performed.
+
+---
+
+# 8. Evidence Collected
+<p align="center">
+  <strong>networkwalks-week-02-penetration-testing</strong>
+</p>
+
+<p align="center">
+  Footprinting • Reconnaissance • OSINT • DNS Analysis • Web Fingerprinting • WAF Detection • Network Scanning
+</p>
+
+---
+
+<p align="center">
+  <a href="YOUR_REPORT_LINK_HERE">
+    <img src="https://img.shields.io/badge/📄%20VIEW%20FULL%20PENETRATION%20TESTING%20REPORT-2563EB?style=for-the-badge&logoColor=white" alt="View Full Penetration Testing Report"/>
+  </a>
+</p>
+
+---
+
+# 1. Liability Disclaimer
+
+| Evidence | Tool | Purpose |
+|---|---|---|
+| WHOIS Output | WHOIS | Domain registration information |
+| Web Fingerprint | WhatWeb | Web technology identification |
+| DNS Resolution | Nslookup | IP address resolution |
+| HTTP Headers | Curl | HTTP/application metadata |
+| WAF Detection | Wafw00f | WAF identification |
+| DNS Enumeration | DNSRecon | DNS infrastructure information |
+| OSINT Enumeration | theHarvester | Public infrastructure information |
+| Network Scan | Nmap | Host and service discovery |
+| Host View | Zenmap | Graphical host/result review |
+| Topology | Zenmap | Network relationship visualization |
+| Topology Export | Zenmap | PDF documentation |
+
+---
+
+**End of Report**
 
