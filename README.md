@@ -47,19 +47,10 @@
 </p>
 
 ---
-
-# PENETRATION TESTING REPORT
-
-### Footprinting, OSINT Enumeration & Network Scanning Phases
-
-**W2-PM-FINAL  |  CYBERSECURITY  |  NETWORKWALKS**
-
----
-
 | Field | Detail |
 |---|---|
 | **Pentester Name (Cybersecurity Professional)** | **Syed Bilal Ahmed** |
-| **Program/Batch** | Cybersecurity / Ethical Hacking Internship |
+| **Program/Batch** | B082-Networkwalks|
 | **Organization** | Networkwalks |
 | **Week** | Week 02 |
 | **Date** | 19–20 August 2026 |
@@ -119,24 +110,94 @@ The table below lists each tool used in this report and its purpose.
 | **Windows / Local Network Tools** | Support local network identification and scanning |
 
 ---
-
 # 4. Activities Performed
 
-## 4.1 Footprinting & Reconnaissance — W2-PM1
+## 4.1 Footprinting & Reconnaissance
 
-I performed reconnaissance against the `networkwalks.com` domain using six Kali Linux tools:
+I performed reconnaissance against the `networkwalks.com` domain using six Kali Linux tools: **WHOIS, WhatWeb, Nslookup, Curl, Wafw00f and DNSRecon**. Each tool was used to collect a different category of information about the target, including domain registration details, web technologies, DNS information, HTTP metadata, WAF detection and DNS infrastructure.
 
-**WHOIS, WhatWeb, nslookup, curl, Wafw00f and DNSRecon.**
+First, I used **WHOIS** to collect publicly available domain registration information. The results identified the domain registrar, registration and expiry dates, domain status and authoritative name servers. The domain was registered through **GoDaddy.com, LLC**, with the authoritative name servers hosted through **HostGator**. The WHOIS result also indicated that DNSSEC was unsigned.
 
-Each tool was used to collect a different type of information about the target.
+### 4.1.1 WHOIS
 
----
+**Purpose:**  
+WHOIS was used to collect publicly available domain-registration information, including the registrar, registration dates, domain status and authoritative name servers.
 
-### WHOIS
+**Command:**
 
-First, I used **WHOIS** to obtain publicly available domain registration information.
+```bash
+whois networkwalks.com
+```
+<img width="1160" height="908" alt="Screenshot 2026-08-18 215617" src="https://github.com/user-attachments/assets/205afd8b-9c2c-4f5f-a6b6-6e1634c0d60b" />
 
-### Target
+- 
+### 4.1.2 WhatWeb
 
-```text
-networkwalks.com
+**Purpose:**  
+WhatWeb was used to fingerprint the `networkwalks.com` website and identify publicly visible web technologies, server software, frameworks, plugins and other application-related information.
+
+**Command:**
+
+```bash
+whatweb networkwalks.com
+
+```
+ <img width="1148" height="912" alt="Screenshot 2026-08-18 222516" src="https://github.com/user-attachments/assets/7114a782-e31a-46fb-b50a-8268607a2272" />
+
+
+### 4.1.3 Nslookup
+
+**Purpose:**  
+Nslookup was used to resolve the `networkwalks.com` domain and identify its publicly accessible IP address.
+
+**Command:**
+
+```bash
+nslookup networkwalks.com
+```
+<img width="1158" height="913" alt="Screenshot 2026-08-18 215805" src="https://github.com/user-attachments/assets/00a377a8-af9a-4026-88db-337922a75801" />
+
+
+### 4.1.4 Curl
+
+**Purpose:**  
+Curl was used to inspect the HTTP response headers returned by the `networkwalks.com` web server.
+
+**Command:**
+
+```bash
+curl -I https://networkwalks.com
+```
+<img width="1163" height="906" alt="Screenshot 2026-08-18 215900" src="https://github.com/user-attachments/assets/1495dac4-bb44-456a-bba4-72405da6dfb2" />
+
+
+### 4.1.5 Wafw00f
+
+**Purpose:**  
+Wafw00f was used to identify whether a Web Application Firewall (WAF) was protecting the `networkwalks.com` website.
+
+**Command:**
+
+```bash
+wafw00f networkwalks.com
+```
+<img width="1165" height="908" alt="Screenshot 2026-08-18 220045" src="https://github.com/user-attachments/assets/21f888d8-41d5-4f23-9b23-d9725e0a8000" />
+
+
+### 4.1.6 DNSRecon
+
+**Purpose:**  
+DNSRecon was used to enumerate publicly available DNS records associated with `networkwalks.com`, including SOA, NS, MX, A, TXT and SRV records.
+
+**Command:**
+
+```bash
+dnsrecon -d networkwalks.com
+```
+<img width="1165" height="903" alt="Screenshot 2026-08-18 220149" src="https://github.com/user-attachments/assets/1d2e628c-ed98-4497-bfe6-c7bb8edb45bb" />
+
+<img width="1155" height="915" alt="Screenshot 2026-08-18 220354" src="https://github.com/user-attachments/assets/026b052d-0d42-4c07-92f5-f302f4e2f363" />
+
+
+
+
