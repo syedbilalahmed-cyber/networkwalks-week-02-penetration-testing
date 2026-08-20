@@ -632,7 +632,7 @@ All activities documented in this repository were performed within the **authori
 </p>
 
 <p align="center">
-  <a href="./Networkwalks_Week_2_Final_Professional_Report_Syed_Bilal_Ahmed_v3_COMPLETED.docx">
+  <a href="Networkwalks_Week_2_Final_Professional_Report_Syed_Bilal_Ahmed_v3_COMPLETED(1)-2.pdf">
     <img src="https://img.shields.io/badge/📄%20VIEW%20FULL%20PENETRATION%20TESTING%20REPORT-2563EB?style=for-the-badge&logoColor=white" alt="View Full Penetration Testing Report"/>
   </a>
 </p>
