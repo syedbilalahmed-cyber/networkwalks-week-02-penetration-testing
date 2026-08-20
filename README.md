@@ -44,6 +44,12 @@
 
 <p align="center">
   Footprinting • Reconnaissance • OSINT • DNS Analysis • Web Fingerprinting • WAF Detection • Network Scanning
+</p> 
+
+<p align="center">
+  <a href="./reports/Networkwalks_Week_2_Letter_of_Authorization.pdf">
+    <img src="https://img.shields.io/badge/🛡️%20VIEW%20LETTER%20OF%20AUTHORIZATION-2563EB?style=for-the-badge&logoColor=white&labelColor=0F172A" alt="View Letter of Authorization"/>
+  </a>
 </p>
 
 ---
